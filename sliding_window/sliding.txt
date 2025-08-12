@@ -1,0 +1,195 @@
+1. Fixed-Size Sliding Window
+When to use: Window size k is fixed.
+
+Use-case: Sum, max, min, average of all subarrays of size k.
+
+Common Problems:
+
+Maximum sum subarray of size k
+
+First negative number in every window of size k
+
+Maximum of all subarrays of size k (Monotonic Deque)
+
+Find averages of subarrays of size k
+
+cpp
+Copy
+Edit
+// Template (fixed window size)
+int sum = 0;
+for (int i = 0; i < k; i++) sum += arr[i];
+
+for (int i = k; i < n; i++) {
+    sum += arr[i] - arr[i - k];
+    // process sum
+}
+✅ 2. Variable-Size Sliding Window
+When to use: You want the smallest/longest window satisfying a condition.
+
+Use-case: When window expands/contracts dynamically based on condition.
+
+Common Problems:
+
+Longest Substring with K distinct characters
+
+Minimum Window Substring (hard)
+
+Smallest Subarray with Sum ≥ Target
+
+Longest Substring Without Repeating Characters
+
+cpp
+Copy
+Edit
+// Template (variable window)
+int i = 0, j = 0;
+while (j < n) {
+    // Expand window with arr[j]
+    j++;
+
+    while (condition_not_satisfied) {
+        // Shrink window from left
+        i++;
+    }
+
+    // Update answer
+}
+✅ 3. Monotonic Queue (for Max/Min in Window)
+When to use: Need to find min/max in O(1) in the current window.
+
+Common Problems:
+
+Sliding Window Maximum
+
+Shortest Subarray with Sum at least K
+
+cpp
+Copy
+Edit
+// Use deque to store indices, keeping decreasing (or increasing) order
+✅ 4. Prefix Sum + Sliding Window
+When to use: Need to calculate subarray sum quickly and avoid recomputation.
+
+Common Problems:
+
+Number of subarrays with sum == K (use hashmap + prefix sum)
+
+Subarray Sum divisible by K
+
+Maximum Average Subarray of length >= k
+
+✅ 5. Bitmask + Sliding Window
+When to use: When sliding over substrings with constraints on characters (like all vowels, all lowercase, etc.)
+
+Example:
+
+All Vowels Substring of length k
+
+All Unique Characters with bitmask window
+
+✅ 6. Frequency Map / HashMap with Window
+When to use: Count-based problems with characters/numbers in a window
+
+Common Problems:
+
+Permutation in String
+
+Anagrams of a string in another string
+
+Longest Substring with At Most K Distinct Characters
+
+Count of Anagram Substrings
+
+cpp
+Copy
+Edit
+unordered_map<char, int> freq;
+✅ 7. Two Pointers (Special Case of Sliding Window)
+When to use: Maintaining a window using two indices, common in sorted arrays.
+
+Common Problems:
+
+Count pairs with sum in a range
+
+Remove duplicates from sorted array
+
+Move Zeroes, Dutch Flag problem
+
+✅ 8. Circular Sliding Window
+When to use: When array is circular or wraps around.
+
+Common Problems:
+
+Gas Station Problem
+
+Maximum sum circular subarray (Kadane’s variation)
+
+✅ 9. Maximum/Minimum in Subarrays using Heap
+When to use: You need top-k elements in a sliding window.
+
+Example:
+
+Maximum of all subarrays of size k (alternative heap approach)
+
+Median in sliding window
+
+✅ 10. Sliding Window with Sorting
+When to use: For median, percentile, etc.
+
+Common Problems:
+
+Sliding Window Median (Multiset or Balanced BST approach)
+
+✅ 11. Sliding Window with Trie or Bit Trie
+When to use: When you’re sliding over bit-represented numbers.
+
+Example:
+
+Maximum XOR of subarrays
+
+Longest subarray with XOR <= K
+
+✅ 12. Sliding Window over 2D Grids
+When to use: Moving submatrix pattern.
+
+Common Problems:
+
+Maximum sum submatrix of size k×k
+
+Sliding window over image pixels
+
+✅ 13. Sliding Window with DP
+When to use: When current state depends on previous k elements.
+
+Example:
+
+House Robber
+
+Jump Game with max reach in window
+
+✅ Bonus Patterns (Mixed):
+Sliding Window + Binary Search
+
+E.g., Find smallest window that satisfies condition, use binary search on length + sliding window check.
+
+Sliding Window + Greedy
+
+Jump Game II
+
+Sliding Window + Stack/Deque
+
+Trapping Rain Water
+
+Monotonic Stack + Window
+
+🔥 Tips:
+Fixed size ⇒ direct sliding.
+
+Variable size ⇒ expand + shrink until condition holds.
+
+Monotonic structures ⇒ use Deque or Multiset.
+
+Prefix Sum + HashMap ⇒ subarray sum problems.
+
+Track frequency ⇒ HashMap, useful for anagrams, characters.
